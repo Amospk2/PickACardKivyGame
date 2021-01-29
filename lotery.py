@@ -1,3 +1,10 @@
+#All is in Portuguese. Sorry guys. Tudo em português.
+#Esse projeto não tem intuito ser profissional, é apenas uma projeto de entreterimento
+#Aqui, tentei reimaginar o " Pick a Card" com o Kivy
+#alguns erros como o de responsividade em diferentes telas e etc não foram levados em consideração no desenvolvimento
+#É extremamente proibido a venda deste produto.
+
+
 from kivy.app import App
 from random import choice
 from kivy.lang import Builder
@@ -343,7 +350,7 @@ class teste(App):
     def build(self):
         return Builder.load_string(Kv)
     
-    def GValues(self, qc):
+    def GValues(self):
         self.redfine()
         for itens in range(3):
             Value = choice(self.ListFalse)
@@ -352,7 +359,8 @@ class teste(App):
         self.truevalues()
         self.falsevalues()
     
-#A função Gvalues sorteia 3 valores como os "verdadeiros" e o restante vai para outra lista de "falsos"
+#A função Gvalues sorteia 3 valores como os "verdadeiros" - que são adicionados a uma lista de "verdadeiros"
+# e o restante vai para outra lista de "falsos"
 
     def truevalues(self):
         for item in self.ListTrue:
@@ -390,7 +398,7 @@ class teste(App):
                 Clock.schedule_once(lambda dt:self.pintaverdeK(App.get_running_app().root.ids.Nine), 1)
 
 #Na função Truevalues definimos quem chamou e caso ele forum dos verdadeiros ele ganha +1 ponto
-       
+# no placar       
     def falsevalues(self):
         for item in self.ListFalse:
 
@@ -449,10 +457,16 @@ class teste(App):
             Rectangle(pos=(Nmbr.pos), size=(Nmbr.size))
     vz = fim = 1
     quemchamou = None
+
+
+#Mudapontos irá adicionar ou retirar os pontos
+#Delay é apenas para haver um tempo até relevar o resultado
+#Pintaverde e pintavermelho iŕa mudar as cores de cada carta de acordo com o resultado
+
     def click(self, qc,*Args):
         self.quemchamou = qc
         if self.vz == 1:
-            self.GValues(qc)
+            self.GValues()
             self.vz = 0
         else:
             pass
@@ -472,5 +486,10 @@ class teste(App):
                 Rectangle(pos=(Nmbr.pos), size=(Nmbr.size))
     def sair(self):
         self.get_running_app().stop()
+
+#Click é quem recebe o QC=quemchamou, e iniciará o processo de loteria
+#RestartOn ira iniciar o processo de reinicio de jogo, retornando tudo ao 0
+#PintaCinza é a função que torna as cartas como as do inicio do jogo
+#Sair função que termina o jogo
 
 teste().run()
